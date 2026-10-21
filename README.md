@@ -61,6 +61,15 @@ npm run test:e2e
 
 إعداد PWA وملف manifest وService Worker يُنشأ أثناء البناء بواسطة `vite-plugin-pwa`. حمّل التطبيق في المتصفح مرة واحدة قبل استخدامه دون اتصال؛ تبقى بيانات المؤقتات والعدادات والجدول في IndexedDB، وتُحفظ تفضيلات الواجهة والتنقل في LocalStorage على الجهاز نفسه. لا تُرسل الملفات أو البيانات إلى خادم.
 
+## النشر على GitHub Pages
+
+الموقع منشور على GitHub Pages عبر `.github/workflows/deploy-pages.yml`، ويُبنى تلقائيًا عند الدفع إلى `main` أو عند تشغيل سير العمل يدويًا (`workflow_dispatch`).
+
+- الرابط: `https://<owner>.github.io/areana-ai/` (يُشتق اسم المستودع من `GITHUB_REPOSITORY`).
+- أمر البناء الخاص بالنشر: `npm run build:pages`، وهو يشغّل `npm run build` ثم ينسخ `dist/index.html` إلى `dist/404.html` حتى تصل المسارات العميقة مثل `/reader` إلى التطبيق.
+- يجب بناء الموقع بمسار أساس مطابق للمستودع؛ يتولى `vite.config.ts` ذلك عند ضبط `GITHUB_PAGES=true`، ويستخدم الراوتر `import.meta.env.BASE_URL` نفسه، ولا حاجة لتعديل أي مسار يدويًا.
+- تفعيل Pages مرة واحدة من إعدادات المستودع (Settings → Pages) بمصدر «GitHub Actions» يكفي؛ يحاول سير العمل تفعيله تلقائيًا عند الحاجة.
+
 ## الخصوصية والمعالجة المحلية
 
 - عمليات PDF الثقيلة والصور تُنفّذ في Web Workers، وتُستخدم Canvas لمعالجة الصور.

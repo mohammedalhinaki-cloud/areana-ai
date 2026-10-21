@@ -71,10 +71,14 @@ function AppRoutes() {
   );
 }
 
+// Vite sets BASE_URL to '/' locally and to '/<repo>/' when the site is built
+// for GitHub Pages, so the router must mount under the same prefix.
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
 export default function App() {
   return (
     // LIMITATION: React Router v6 is a mandated dependency. This client-only app uses static local routes from tools.ts and has no SSR hydration or user-supplied destinations; revisit the major version when the v6 requirement changes.
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <PreferencesProvider>
         <NavigationProvider>
           <ToastProvider>
