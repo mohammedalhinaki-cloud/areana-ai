@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, arena/86547e4b-areana-ai]
   workflow_dispatch:
 
 permissions:
