@@ -68,7 +68,7 @@ npm run test:e2e
 - الرابط: `https://<owner>.github.io/areana-ai/` (يُشتق اسم المستودع من `GITHUB_REPOSITORY`).
 - أمر البناء الخاص بالنشر: `npm run build:pages`، وهو يشغّل `npm run build` ثم ينسخ `dist/index.html` إلى `dist/404.html` حتى تصل المسارات العميقة مثل `/reader` إلى التطبيق.
 - يجب بناء الموقع بمسار أساس مطابق للمستودع؛ يتولى `vite.config.ts` ذلك عند ضبط `GITHUB_PAGES=true`، ويستخدم الراوتر `import.meta.env.BASE_URL` نفسه، ولا حاجة لتعديل أي مسار يدويًا.
-- تفعيل Pages مرة واحدة من إعدادات المستودع (Settings → Pages) بمصدر «GitHub Actions» يكفي؛ يحاول سير العمل تفعيله تلقائيًا عند الحاجة.
+- تفعيل Pages مرة واحدة من إعدادات المستودع (Settings → Pages ← Build and deployment ← Source: GitHub Actions) خطوة يدوية لازمة، لأن إنشاء موقع Pages يتطلب صلاحية إدارة المستودع التي لا يملكها رمز سير العمل. بعد التفعيل يعمل كل نشر تالٍ تلقائيًا.
 
 ## الخصوصية والمعالجة المحلية
 

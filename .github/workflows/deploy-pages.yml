@@ -35,10 +35,13 @@ jobs:
           GITHUB_PAGES: 'true'
         run: npm run build:pages
 
+      # One-time prerequisite: a repository admin must enable Pages at
+      # Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+      # Creating the Pages site needs repository admin rights, which the
+      # workflow GITHUB_TOKEN can never be granted, so this step only locates
+      # the existing site.
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
